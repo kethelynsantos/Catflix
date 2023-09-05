@@ -1,0 +1,70 @@
+.container .title {
+  color: #fff;
+  font-size: 2rem;
+  text-align: center;
+  margin: 5rem 0 1rem;
+}
+
+.title .query-text {
+  color: #00D9F5;
+}
+
+.movies-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.movies-container div {
+  width: 30%;
+  color: #fff;
+  margin-bottom: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #111;
+  padding: 1rem;
+}
+
+.movies-container div img {
+  max-width: 100%;
+}
+
+.movies-container div img,
+.movies-container div p {
+  margin-bottom: 1rem;
+}
+
+.movies-container div h2 {
+  margin-bottom: 1.5rem;
+}
+
+.movies-container div svg {
+  color: #00D9F5;
+}
+
+.movies-container div a {
+  background-color: #00D9F5;
+  border: 2px solid #00D9F5;
+  border-radius: 4px;
+  color: #000;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.movies-container div a:hover {
+  background-color: transparent;
+  color: #00D9F5;
+}
+
+.subtitle-underline {
+  width: 200px;
+  height: 4px;
+  background: #00D9F5;
+  border-radius: 2rem;
+  margin: 0px auto 0 auto;
+}
