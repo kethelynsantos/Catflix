@@ -1,43 +1,58 @@
-// usestate para gerenciar o estado dos filmes e useeffect para chamar a api quando a pagina carregar
-import { useEffect, useState } from "react";
-import MovieCard from "../components/MovieCard";
+import React, { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCat } from "@fortawesome/free-solid-svg-icons";
+import { BiSearchAlt2 } from "react-icons/bi";
+import "./Home.css"; // Importe o arquivo CSS
 
-import "./MoviesGrid.css";
+function Home() {
+  const [search, setSearch] = useState("");
+  // chamando uma função de redirecionamento para o componente
+  const navigate = useNavigate();
+  // agora eu tenho que mapear um evento para o submit do input
 
-// importando variaveis que estão no env quando utilizamos vite
-const moviesURL = import.meta.env.VITE_API;
-const apiKey = import.meta.env.VITE_API_KEY;
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    /* se tiver vazio eu dou um return pois não esta buscando nada
+    agora caso tenha eu tenho que enviar alguma coisa na minha query string para pegar esse valor e consultar na api 
+    então naquela pagina vou pegar esse q e acessar a api*/
 
-const Home = () => {
-  const [topMovies, setTopMovies] = useState([]);
+    if (!search) return;
 
-  const getTopRatedMovies = async (url) => {
-    const res = await fetch(url);
-    const data = await res.json();
-    setTopMovies(data.results);
+    navigate(`/search?q=${search}`, { replace: true });
+    setSearch("");
   };
 
-  useEffect(() => {
-    const topRatedUrl = `${moviesURL}top_rated?${apiKey}`;
-    console.log(topRatedUrl);
-    getTopRatedMovies(topRatedUrl);
-  }, []);
-
-  console.log(topMovies);
-
   return (
-    <div className="container">
-      <h2 className="title">Melhores filmes:</h2>
-      <div class="subtitle-underline"></div>
-      <div className="movies-container">
-        {topMovies.length > 0 &&
-          topMovies.map((movie) => <MovieCard key={movie.id} movie={movie} />)}
-      </div>
+    <div>
+      <header className="showcase">
+        <div className="showcase-top">
+          <h2>
+            <Link to="/">
+              <FontAwesomeIcon icon={faCat} /> Catflix
+            </Link>
+          </h2>
+        </div>
+        <div className="showcase-content">
+          <h1>See what's next</h1>
+          <p>Seven lives, endless stories.</p>
+          <form onSubmit={handleSubmit}>
+            <input
+              type="text"
+              placeholder="Look for a movie"
+              // mudando meu estado do search baseado nos eventos que acontecem aqui
+              onChange={(e) => setSearch(e.target.value)}
+              // isso me permite manipular o valor do campo a partir do state
+              value={search}
+            />
+            <button type="submit">
+              <BiSearchAlt2 />
+            </button>
+          </form>
+        </div>
+      </header>
     </div>
   );
-};
+}
 
 export default Home;
-
-/* com o useeffect eu tenho a possibilidade de executar uma função em alguns estagios a minha aplicação e isso vai ser baseado em um array dependecias que temos depois que a função é executada a cada que vez que alguma dependencia desse array é modificada.
-como eu não quero mapear nenhuma função dentro do getTopRatedMovies, eu só preciso executar aquela função quando a pagina for carregada então meu array fica vazio */

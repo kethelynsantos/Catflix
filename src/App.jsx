@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import NetflixClone from "./components/NetflixClone";
+import Home from "./pages/Home";
 
 import "./App.css";
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="app-container">
 
-      <NetflixClone />
+      <Home />
       <Outlet />
     </div>
   );
