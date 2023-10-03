@@ -27,7 +27,7 @@ const TwentyMovies = () => {
 
   return (
     <div className="container">
-      <h2 className="title">Melhores filmes:</h2>
+      <h2 className="title">Best movies:</h2>
       <div className="subtitle-underline"></div>
       <div className="movies-container">
         {topMovies.length > 0 &&

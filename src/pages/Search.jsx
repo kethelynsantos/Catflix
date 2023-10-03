@@ -39,12 +39,12 @@ const Search = () => {
   return (
     <div className="container">
       <h2 className="title">
-        Resultados para: <span className="query-text">{query}</span>
+      Results for: <span className="query-text">{query}</span>
       </h2>
       {loading ? (
-        <p>Carregando...</p>
+        <p>Loading...</p>
       ) : movies.length === 0 ? (
-        <p>Nenhum resultado encontrado para "{query}"</p>
+        <p>No results found for "{query}"</p>
       ) : (
         <div className="movies-container">
           {movies.map((movie) => (
